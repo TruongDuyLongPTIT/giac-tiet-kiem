@@ -60,6 +60,25 @@
   figure img { display:block; width:100%; height:auto; }
   figcaption { font-size:13px; color:var(--muted); padding:10px 14px; background:#fff; border-top:1px solid var(--line); }
 
+  .needs { display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:14px; }
+  .need { border:1px solid var(--line); border-radius:14px; padding:18px; background:#fff; display:flex; flex-direction:column; }
+  .need .q { font-weight:800; font-size:17px; line-height:1.35; margin:0 0 8px; }
+  .need .q span { margin-right:6px; }
+  .need .a { margin:0; color:#3a4452; font-size:15px; flex:1; }
+  .need .proof { margin-top:12px; font-size:13.5px; color:#0d7a3c; background:var(--okbg); border-radius:8px; padding:8px 10px; font-weight:600; }
+
+  .cmp-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; }
+  table.cmp { width:100%; border-collapse:collapse; font-size:14.5px; min-width:600px; }
+  .cmp th, .cmp td { padding:9px 12px; text-align:right; border-bottom:1px solid var(--line); white-space:nowrap; }
+  .cmp th:first-child, .cmp td:first-child { text-align:left; }
+  .cmp thead th { background:var(--bg); font-size:13px; color:#3a4452; vertical-align:bottom; }
+  .cmp th small, .cmp td small { display:block; color:var(--muted); font-size:12px; font-weight:400; }
+  .cmp .us { color:var(--ok); font-weight:800; background:#f3fbf6; }
+  .cmp .save { font-weight:700; }
+  .cmp tr.mean td { font-weight:800; background:var(--bg); border-bottom:0; }
+  .swipe { display:none; font-size:12.5px; color:var(--muted); margin:0 0 6px; }
+  .foot { font-size:12.5px; color:var(--muted); margin-top:10px; }
+
   .steps { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
   .step { border:1px solid var(--line); border-radius:14px; padding:18px; }
   .step .n { width:30px; height:30px; border-radius:50%; background:var(--brand); color:#fff; font-weight:800; display:grid; place-items:center; margin-bottom:10px; }
@@ -88,6 +107,7 @@
 
   @media (max-width:760px) {
     .stats, .steps, .fee, .times { grid-template-columns:1fr; }
+    .swipe { display:block; }
     .hero { padding:36px 0 28px; }
     .btn { width:100%; justify-content:center; }
   }
@@ -111,8 +131,30 @@
 </div></div>
 
 <section><div class="wrap">
+  <h2>Xưởng mình đang gặp chuyện nào?</h2>
+  <p class="sub">Giác Tiết Kiệm giúp ngay ở những việc hằng ngày của phòng kỹ thuật và kho vải.</p>
+  <div class="needs">
+    <div class="need"><p class="q"><span>✂️</span>Muốn mỗi chồng vải cắt ra tốn ít vải hơn?</p>
+      <p class="a">Gửi sơ đồ đang dùng, nhận lại sơ đồ ngắn hơn với cùng chi tiết, cùng khổ vải. Không phải đổi rập, đổi máy.</p>
+      <div class="proof">Sơ đồ thật 42 mảnh: bớt khoảng 5,5–8,2 m vải cho mỗi chồng 60 lớp.</div></div>
+    <div class="need"><p class="q"><span>📏</span>Vải về hẹp hơn khổ đã đặt, lo không cắt đủ?</p>
+      <p class="a">Nhắn khổ thật đo được. Trợ lý giác lại theo khổ mới và báo ngay: vẫn đủ vải, hay thiếu bao nhiêu mét.</p>
+      <div class="proof">Sơ đồ thật 42 mảnh, vải hẹp đi 2 cm: sơ đồ mới vẫn ngắn hơn sơ đồ cũ 5,7 cm, không phải mua thêm.</div></div>
+    <div class="need"><p class="q"><span>🛒</span>Muốn biết chính xác cần đặt bao nhiêu mét vải, tránh mua thừa?</p>
+      <p class="a">Nhập số lớp cần trải, trợ lý tính số mét vải cho cả chồng theo sơ đồ đã tối ưu, trước khi đặt hàng.</p>
+      <div class="proof">Sơ đồ 42 mảnh, 60 lớp: cần đặt 184,4 m thay vì 189,8 m (chưa tính hao đầu bàn).</div></div>
+    <div class="need"><p class="q"><span>⏱️</span>Không có thời gian, hay không có người ngồi giác lại sơ đồ?</p>
+      <p class="a">Chỉ cần gửi file và nhắn hoặc nói một câu. 1–5 phút có sơ đồ mới, file PLT đưa thẳng ra máy vẽ, máy cắt.</p>
+      <div class="proof">Câu mẫu gợi ý sẵn theo từng file, bấm là chạy.</div></div>
+    <div class="need"><p class="q"><span>💸</span>Ngại bỏ tiền mua phần mềm mà chưa biết có hiệu quả không?</p>
+      <p class="a">Không phải mua gì. Chỉ trả 5% số tiền vải tiết kiệm được; không tiết kiệm thì không mất đồng nào.</p>
+      <div class="proof">Mỗi 1 đồng phí mang về 20 đồng tiền vải.</div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
   <h2>Kết quả thật, đo trên sơ đồ thật</h2>
-  <p class="sub">Cùng số chi tiết, cùng khổ vải, chỉ xếp lại vị trí. Chạy càng lâu, sơ đồ càng ngắn.</p>
+  <p class="sub">Cùng số chi tiết, cùng khổ vải, chỉ xếp lại vị trí. Sơ đồ càng tối ưu, càng tiết kiệm được nhiều vải.</p>
   <div class="real">
     <h3>Sơ đồ thật 42 mảnh, xuất từ phần mềm CLO 3D</h3>
     <p class="meta">Khổ 1,56 m · dài 3,163 m · hiệu suất ban đầu 78,7%. Tính cho chồng 60 lớp, vải 55.000 đ/m.</p>
@@ -137,14 +179,37 @@
 </div></section>
 
 <section><div class="wrap">
+  <h2>So với cách xếp của công cụ miễn phí</h2>
+  <p class="sub">Đo trên 10 bộ sơ đồ mẫu chuẩn quốc tế. Hiệu suất sơ đồ là phần vải nằm trong chi tiết: càng cao, vải thừa càng ít. Cùng máy, cùng 2 phút, cùng điều kiện canh sợi (chỉ xoay 0°/180°), mỗi bộ chạy 3 lần: Giác Tiết Kiệm cao hơn ở cả 10 bộ, 30/30 lần chạy.</p>
+  <p class="swipe">Vuốt ngang để xem hết bảng →</p>
+  <div class="cmp-wrap"><table class="cmp">
+    <thead><tr><th>Bộ sơ đồ mẫu</th><th>Xếp lần lượt<small>cách đơn giản nhất</small></th><th>Cách của Deepnest<small>phần mềm miễn phí</small></th><th>Giác Tiết Kiệm</th><th>Sơ đồ ngắn hơn<small>so với Deepnest</small></th></tr></thead>
+    <tbody>
+      <tr><td>Quần<small>64 mảnh</small></td><td>80,1%</td><td>84,9%</td><td class="us">90,8%</td><td class="save">−6,5%</td></tr>
+      <tr><td>Áo sơ mi<small>99 mảnh</small></td><td>75,2%</td><td>79,5%</td><td class="us">88,4%</td><td class="save">−10,0%</td></tr>
+      <tr><td>Đồ bơi<small>48 mảnh</small></td><td>65,2%</td><td>68,6%</td><td class="us">75,9%</td><td class="save">−9,6%</td></tr>
+      <tr><td>Albano<small>24 mảnh</small></td><td>77,9%</td><td>82,7%</td><td class="us">88,3%</td><td class="save">−6,4%</td></tr>
+      <tr><td>Dagli<small>30 mảnh</small></td><td>74,6%</td><td>80,6%</td><td class="us">87,3%</td><td class="save">−7,7%</td></tr>
+      <tr><td>Mao<small>20 mảnh</small></td><td>76,6%</td><td>77,1%</td><td class="us">81,2%</td><td class="save">−5,1%</td></tr>
+      <tr><td>Marques<small>24 mảnh</small></td><td>69,9%</td><td>83,0%</td><td class="us">88,5%</td><td class="save">−6,2%</td></tr>
+      <tr><td>Gardeyn 0<small>50 mảnh</small></td><td>77,5%</td><td>81,4%</td><td class="us">88,0%</td><td class="save">−7,6%</td></tr>
+      <tr><td>Gardeyn 1<small>50 mảnh</small></td><td>73,8%</td><td>80,0%</td><td class="us">86,3%</td><td class="save">−7,3%</td></tr>
+      <tr><td>Gardeyn 3<small>100 mảnh</small></td><td>75,8%</td><td>78,1%</td><td class="us">85,5%</td><td class="save">−8,7%</td></tr>
+      <tr class="mean"><td>Trung bình 10 bộ</td><td>74,7%</td><td>79,6%</td><td class="us">86,0%</td><td class="save">−7,5%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="foot">Quần, áo sơ mi, đồ bơi, Albano, Dagli, Mao, Marques là sơ đồ ngành may trong bộ dữ liệu ESICUP, dùng làm chuẩn so sánh quốc tế; bộ Gardeyn đi kèm mã nguồn sparrow. “Cách của Deepnest” là thuật toán Deepnest và SVGnest dùng (thuật toán di truyền + xếp góc dưới trái), dựng lại trên cùng lõi hình học để so sánh công bằng. Chưa so sánh với phần mềm thương mại như Lectra, Gerber.</p>
+</div></section>
+
+<section><div class="wrap">
   <h2>Dùng trong 3 bước</h2>
   <p class="sub">Không phải học phần mềm mới. Trợ lý hỏi lại để anh/chị xác nhận trước khi chạy.</p>
   <div class="steps">
     <div class="step"><div class="n">1</div><h3>Gửi file sơ đồ</h3>
       <p>Kéo thả file .plt đang dùng. Trợ lý đọc số chi tiết, khổ vải, chiều dài và gợi ý sẵn lệnh phù hợp với chính file đó.</p></div>
     <div class="step"><div class="n">2</div><h3>Nhắn hoặc nói yêu cầu</h3>
-      <p>Viết hay nói tự nhiên, trợ lý tóm lại thành thẻ yêu cầu để anh/chị kiểm tra rồi bấm Xác nhận.</p>
-      <div class="quote">“chạy 2 phút, trải 60 lớp, vải 55 nghìn một mét”</div></div>
+      <p>Bấm câu mẫu trợ lý gợi ý sẵn cho file, hoặc tự viết, tự nói theo mẫu. Trợ lý tóm lại thành thẻ yêu cầu để anh/chị kiểm tra rồi bấm Xác nhận.</p>
+      <div class="quote">“khổ 1m56, chạy 2 phút, trải 60 lớp, vải 55 nghìn một mét, cách nhau 0,5 mm, không cho nghiêng, cắt gọn dấu”</div></div>
     <div class="step"><div class="n">3</div><h3>Nhận sơ đồ mới</h3>
       <p>Xem trước/sau, số mét vải và số tiền tiết kiệm cho cả chồng. File mới giữ nguyên nét vẽ, dấu bấm, chữ của file gốc.</p></div>
   </div>
@@ -172,7 +237,8 @@
 <section><div class="wrap">
   <h2>Câu hỏi thường gặp</h2>
   <details><summary>Cần phần mềm hay máy móc gì không?</summary>
-    <p>Không. Chỉ cần trình duyệt và file sơ đồ .plt (HPGL) xuất từ phần mềm giác sơ đồ đang dùng. File trả về cùng định dạng, dùng ngay trên máy vẽ, máy cắt hiện có.</p></details>
+    <p>Không. Hiện tại chỉ cần trình duyệt và file sơ đồ .plt (HPGL) xuất từ phần mềm giác sơ đồ đang dùng. File trả về cùng định dạng, dùng ngay trên máy vẽ, máy cắt hiện có.</p>
+    <p>Sắp tới trợ lý chạy trực tiếp trong Zalo: gửi file, nhắn tin hoặc gửi tin nhắn thoại ngay trong Zalo là nhận sơ đồ mới. Không cần mở trang web, không cần cài thêm gì, dùng ngay trên điện thoại.</p></details>
   <details><summary>Sơ đồ mới có làm sai chi tiết không?</summary>
     <p>Không sửa hình chi tiết. Chỉ dời và xoay các chi tiết theo góc cho phép, giữ khoảng cách tối thiểu giữa chúng. Nét vẽ, dấu bấm, chữ ghi chú được giữ nguyên từ file gốc. Kết quả được kiểm tra chồng lấn trước khi trả về.</p></details>
   <details><summary>Nói nhầm hoặc máy nghe sai thì sao?</summary>
