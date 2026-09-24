@@ -48,6 +48,14 @@
   .stat b { display:block; font-size:clamp(22px, 3.6vw, 30px); line-height:1.2; }
   .stat span { font-size:13.5px; color:var(--muted); }
   .stat.good { background:var(--okbg); border-color:#cfe9d8; } .stat.good b { color:var(--ok); }
+  .real { border:1px solid #cfe9d8; background:var(--okbg); border-radius:14px; padding:18px; margin:0 0 34px; }
+  .real h3, .demo-h { margin:0 0 4px; font-size:19px; }
+  .real .meta { font-size:13.5px; color:var(--muted); margin:0 0 14px; }
+  .times { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+  .time { background:#fff; border:1px solid #d7ecdf; border-radius:12px; padding:14px; }
+  .time .t { font-size:13px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; }
+  .time b { display:block; font-size:clamp(22px, 3.4vw, 28px); color:var(--ok); line-height:1.25; margin:2px 0; }
+  .time span { font-size:13.5px; color:#3a4452; }
   figure { margin:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#f6f6f6; }
   figure img { display:block; width:100%; height:auto; }
   figcaption { font-size:13px; color:var(--muted); padding:10px 14px; background:#fff; border-top:1px solid var(--line); }
@@ -79,7 +87,7 @@
   footer { font-size:12.5px; color:var(--muted); padding:22px 0 30px; border-top:1px solid var(--line); }
 
   @media (max-width:760px) {
-    .stats, .steps, .fee { grid-template-columns:1fr; }
+    .stats, .steps, .fee, .times { grid-template-columns:1fr; }
     .hero { padding:36px 0 28px; }
     .btn { width:100%; justify-content:center; }
   }
@@ -103,8 +111,20 @@
 </div></div>
 
 <section><div class="wrap">
-  <h2>Kết quả thật trên một sơ đồ mẫu</h2>
-  <p class="sub">Sơ đồ quần mẫu từ bộ dữ liệu công khai ESICUP, chạy 1 phút. Cùng số chi tiết, cùng khổ vải, chỉ xếp lại vị trí.</p>
+  <h2>Kết quả thật, đo trên sơ đồ thật</h2>
+  <p class="sub">Cùng số chi tiết, cùng khổ vải, chỉ xếp lại vị trí. Chạy càng lâu, sơ đồ càng ngắn.</p>
+  <div class="real">
+    <h3>Sơ đồ thật 42 mảnh, xuất từ phần mềm CLO 3D</h3>
+    <p class="meta">Khổ 1,56 m · dài 3,163 m · hiệu suất ban đầu 78,7%. Tính cho chồng 60 lớp, vải 55.000 đ/m.</p>
+    <div class="times">
+      <div class="time"><div class="t">Chạy 1 phút</div><b>−9 cm</b><span>−2,9% chiều dài · 5,5 m vải/chồng ≈ 303.000 đ</span></div>
+      <div class="time"><div class="t">Chạy 2 phút</div><b>−12 cm</b><span>−3,7% chiều dài · 7,0 m vải/chồng ≈ 386.000 đ</span></div>
+      <div class="time"><div class="t">Chạy 5 phút</div><b>−14 cm</b><span>−4,3% chiều dài · 8,2 m vải/chồng ≈ 449.000 đ</span></div>
+    </div>
+    <p class="meta" style="margin:12px 0 0">File sơ đồ này không được phép chia sẻ công khai nên trang chỉ đăng số liệu đo được.</p>
+  </div>
+  <h3 class="demo-h">Xem tận mắt: sơ đồ quần 64 mảnh</h3>
+  <p class="sub" style="margin-bottom:16px">Bộ dữ liệu chuẩn quốc tế ESICUP, công khai, chạy 1 phút. File này có sẵn trong bản dùng thử để ai cũng tự chạy lại được.</p>
   <div class="stats">
     <div class="stat good"><b>−28 cm</b><span>mỗi lớp vải (4,862 m → 4,582 m, −5,8%)</span></div>
     <div class="stat good"><b>16,8 m vải</b><span>mỗi lần cắt chồng 60 lớp</span></div>
@@ -112,7 +132,7 @@
   </div>
   <figure>
     <img src="so_sanh.svg" alt="So sánh sơ đồ trước và sau khi tối ưu: sơ đồ sau ngắn hơn 28 cm" width="992" height="702" loading="lazy">
-    <figcaption>Trên: sơ đồ ban đầu, hiệu suất 85,1%. Dưới: sau 1 phút tối ưu, hiệu suất 90,3%. Mức giảm tuỳ từng sơ đồ: sơ đồ đã giác máy kỹ thường giảm ít hơn. Thử file của mình là biết ngay.</figcaption>
+    <figcaption>Trên: sơ đồ ban đầu, hiệu suất 85,1%. Dưới: sau 1 phút tối ưu, hiệu suất 90,3%. Mức giảm tuỳ từng sơ đồ, thường 3–6%; sơ đồ đã giác máy kỹ giảm ít hơn. Thử file của mình là biết ngay.</figcaption>
   </figure>
 </div></section>
 
@@ -139,12 +159,13 @@
   </div>
   <div class="ex">
     <table>
-      <tr><td>Vải tiết kiệm (60 lớp × 28 cm)</td><td>16,8 m</td></tr>
-      <tr><td>Thành tiền (55.000 đ/m)</td><td>923.000 đ</td></tr>
-      <tr><td>Phí 5%</td><td>46.200 đ</td></tr>
-      <tr class="big"><td>Xưởng giữ lại</td><td>876.800 đ</td></tr>
+      <tr><td colspan="2" style="font-weight:700;text-align:left">Sơ đồ thật 42 mảnh, chạy 2 phút</td></tr>
+      <tr><td>Vải tiết kiệm (60 lớp × 11,7 cm)</td><td>7,0 m</td></tr>
+      <tr><td>Thành tiền (55.000 đ/m)</td><td>386.200 đ</td></tr>
+      <tr><td>Phí 5%</td><td>19.300 đ</td></tr>
+      <tr class="big"><td>Xưởng giữ lại</td><td>366.900 đ</td></tr>
     </table>
-    <div class="note" style="margin-top:10px">Mỗi 1 đồng phí mang về 20 đồng vải. Cắt 10 chồng như vậy là giữ lại hơn 8,7 triệu đồng.</div>
+    <div class="note" style="margin-top:10px">Mỗi 1 đồng phí mang về 20 đồng vải. Cắt 10 chồng như vậy là giữ lại hơn 3,6 triệu đồng.</div>
   </div>
 </div></section>
 
