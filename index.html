@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giác Tiết Kiệm — sơ đồ cắt ngắn hơn, tốn ít vải hơn</title>
+<meta name="description" content="Gửi file sơ đồ PLT đang dùng, AI xếp lại chi tiết chặt hơn trong 1–3 phút. Chỉ trả 5% số tiền vải tiết kiệm được.">
+<meta property="og:title" content="Giác Tiết Kiệm — sơ đồ cắt ngắn hơn, tốn ít vải hơn">
+<meta property="og:description" content="Gửi file sơ đồ PLT, nhận sơ đồ mới ngắn hơn trong 1–3 phút. Không tiết kiệm được thì không mất đồng nào.">
+<meta property="og:image" content="so_sanh.svg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230068ff'/><text x='16' y='22' font-size='16' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>GT</text></svg>">
+<style>
+  :root { --brand:#0068ff; --brand-dark:#0a4fc4; --ink:#1c1e21; --muted:#5b6573; --line:#e3e8ef; --bg:#f5f7fb;
+          --ok:#12a150; --okbg:#e8f7ee; --warn:#664d03; --warnbg:#fff3cd; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:#fff; line-height:1.55; }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 16px; }
+  a { color:var(--brand); }
+
+  .top { border-bottom:1px solid var(--line); background:#fff; position:sticky; top:0; z-index:5; }
+  .top .wrap { display:flex; align-items:center; gap:10px; height:58px; }
+  .logo { width:34px; height:34px; border-radius:9px; background:var(--brand); color:#fff; display:grid; place-items:center; font-weight:800; font-size:14px; flex:none; }
+  .brand { font-weight:800; font-size:17px; }
+  .tag { margin-left:auto; font-size:12px; background:var(--warnbg); color:var(--warn); padding:3px 10px; border-radius:99px; white-space:nowrap; }
+
+  .hero { background:linear-gradient(180deg, #eaf2ff 0%, #fff 100%); padding:56px 0 40px; }
+  .hero h1 { font-size:clamp(28px, 5vw, 44px); line-height:1.15; margin:0 0 14px; letter-spacing:-.5px; max-width:760px; }
+  .hero h1 em { font-style:normal; color:var(--brand); }
+  .hero p.lead { font-size:clamp(16px, 2.2vw, 19px); color:#3a4452; margin:0 0 26px; max-width:680px; }
+  .cta { display:flex; flex-wrap:wrap; align-items:center; gap:14px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; background:var(--brand); color:#fff; font-weight:700; font-size:18px;
+         padding:14px 28px; border-radius:12px; text-decoration:none; border:0; cursor:pointer; box-shadow:0 6px 18px rgba(0,104,255,.25); }
+  .btn:hover { background:var(--brand-dark); }
+  .btn.off { background:#9aa6b8; box-shadow:none; cursor:not-allowed; pointer-events:none; }
+  .state { font-size:14px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+  .state i { width:10px; height:10px; border-radius:50%; background:#c2c9d3; display:inline-block; flex:none; }
+  .state.on i { background:var(--ok); box-shadow:0 0 0 4px rgba(18,161,80,.18); }
+  .state.off i { background:#e0a100; }
+  .note { font-size:13px; color:var(--muted); margin-top:12px; }
+
+  section { padding:44px 0; }
+  section + section { border-top:1px solid var(--line); }
+  h2 { font-size:clamp(22px, 3.4vw, 30px); margin:0 0 8px; letter-spacing:-.3px; }
+  .sub { color:var(--muted); margin:0 0 24px; max-width:720px; }
+
+  .stats { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin:0 0 20px; }
+  .stat { background:var(--bg); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .stat b { display:block; font-size:clamp(22px, 3.6vw, 30px); line-height:1.2; }
+  .stat span { font-size:13.5px; color:var(--muted); }
+  .stat.good { background:var(--okbg); border-color:#cfe9d8; } .stat.good b { color:var(--ok); }
+  figure { margin:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#f6f6f6; }
+  figure img { display:block; width:100%; height:auto; }
+  figcaption { font-size:13px; color:var(--muted); padding:10px 14px; background:#fff; border-top:1px solid var(--line); }
+
+  .steps { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+  .step { border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .step .n { width:30px; height:30px; border-radius:50%; background:var(--brand); color:#fff; font-weight:800; display:grid; place-items:center; margin-bottom:10px; }
+  .step h3 { margin:0 0 6px; font-size:17px; }
+  .step p { margin:0; color:#3a4452; font-size:15px; }
+  .quote { background:var(--bg); border-left:3px solid var(--brand); padding:6px 10px; border-radius:6px; font-size:14px; margin-top:8px; color:#2b3645; }
+
+  .fee { display:grid; grid-template-columns:1.1fr 1fr; gap:22px; align-items:center; }
+  .split { display:flex; height:44px; border-radius:10px; overflow:hidden; font-weight:700; color:#fff; font-size:14px; margin:14px 0 8px; }
+  .split .keep { flex:95; background:var(--ok); display:flex; align-items:center; padding-left:14px; }
+  .split .cut { flex:5; background:var(--brand); display:grid; place-items:center; min-width:52px; }
+  .ex { background:var(--okbg); border:1px solid #cfe9d8; border-radius:14px; padding:18px; }
+  .ex table { width:100%; border-collapse:collapse; font-size:15px; }
+  .ex td { padding:6px 0; border-bottom:1px dashed #cfe0d5; } .ex td:last-child { text-align:right; font-weight:700; white-space:nowrap; }
+  .ex tr:last-child td { border-bottom:0; }
+  .ex .big td { font-size:17px; color:var(--ok); }
+  ul.plain { margin:0; padding-left:20px; } ul.plain li { margin:6px 0; }
+
+  details { border:1px solid var(--line); border-radius:12px; padding:12px 16px; margin:0 0 10px; }
+  summary { cursor:pointer; font-weight:700; }
+  details p { margin:8px 0 0; color:#3a4452; }
+
+  .final { text-align:center; background:linear-gradient(180deg, #fff 0%, #eaf2ff 100%); }
+  .final .cta { justify-content:center; }
+  footer { font-size:12.5px; color:var(--muted); padding:22px 0 30px; border-top:1px solid var(--line); }
+
+  @media (max-width:760px) {
+    .stats, .steps, .fee { grid-template-columns:1fr; }
+    .hero { padding:36px 0 28px; }
+    .btn { width:100%; justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap">
+  <div class="logo">GT</div><div class="brand">Giác Tiết Kiệm</div>
+  <div class="tag">Bản dùng thử</div>
+</div></div>
+
+<div class="hero"><div class="wrap">
+  <h1>Sơ đồ cắt <em>ngắn hơn</em>, mỗi chồng vải <em>tốn ít hơn</em></h1>
+  <p class="lead">Gửi file sơ đồ PLT xưởng đang dùng. AI xếp lại các chi tiết chặt hơn trong 1–3 phút và trả về file PLT mới, đưa thẳng ra máy vẽ, máy cắt. Nhắn tin hoặc nói bằng tiếng Việt như chat Zalo.</p>
+  <div class="cta">
+    <a class="btn off" data-go href="#">Dùng thử ngay →</a>
+    <div class="state" data-state><i></i><span>Đang kiểm tra máy chủ…</span></div>
+  </div>
+  <div class="note">Không cần cài đặt, không cần tài khoản. Mở trên máy tính để kéo thả file dễ nhất.</div>
+</div></div>
+
+<section><div class="wrap">
+  <h2>Kết quả thật trên một sơ đồ mẫu</h2>
+  <p class="sub">Sơ đồ quần mẫu từ bộ dữ liệu công khai ESICUP, chạy 1 phút. Cùng số chi tiết, cùng khổ vải, chỉ xếp lại vị trí.</p>
+  <div class="stats">
+    <div class="stat good"><b>−28 cm</b><span>mỗi lớp vải (4,862 m → 4,582 m, −5,8%)</span></div>
+    <div class="stat good"><b>16,8 m vải</b><span>mỗi lần cắt chồng 60 lớp</span></div>
+    <div class="stat good"><b>≈ 923.000 đ</b><span>mỗi chồng, với vải 55.000 đ/m</span></div>
+  </div>
+  <figure>
+    <img src="so_sanh.svg" alt="So sánh sơ đồ trước và sau khi tối ưu: sơ đồ sau ngắn hơn 28 cm" width="992" height="702" loading="lazy">
+    <figcaption>Trên: sơ đồ ban đầu, hiệu suất 85,1%. Dưới: sau 1 phút tối ưu, hiệu suất 90,3%. Mức giảm tuỳ từng sơ đồ: sơ đồ đã giác máy kỹ thường giảm ít hơn. Thử file của mình là biết ngay.</figcaption>
+  </figure>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Dùng trong 3 bước</h2>
+  <p class="sub">Không phải học phần mềm mới. Trợ lý hỏi lại để anh/chị xác nhận trước khi chạy.</p>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Gửi file sơ đồ</h3>
+      <p>Kéo thả file .plt đang dùng. Trợ lý đọc số chi tiết, khổ vải, chiều dài và gợi ý sẵn lệnh phù hợp với chính file đó.</p></div>
+    <div class="step"><div class="n">2</div><h3>Nhắn hoặc nói yêu cầu</h3>
+      <p>Viết hay nói tự nhiên, trợ lý tóm lại thành thẻ yêu cầu để anh/chị kiểm tra rồi bấm Xác nhận.</p>
+      <div class="quote">“chạy 2 phút, trải 60 lớp, vải 55 nghìn một mét”</div></div>
+    <div class="step"><div class="n">3</div><h3>Nhận sơ đồ mới</h3>
+      <p>Xem trước/sau, số mét vải và số tiền tiết kiệm cho cả chồng. File mới giữ nguyên nét vẽ, dấu bấm, chữ của file gốc.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap fee">
+  <div>
+    <h2>Chỉ trả khi thật sự tiết kiệm</h2>
+    <p class="sub" style="margin-bottom:0">Phí bằng <b>5% số tiền vải tiết kiệm được</b>, tính trên cả chồng vải. 95% còn lại là của xưởng. Sơ đồ mới không ngắn hơn thì tải về miễn phí, không mất đồng nào.</p>
+    <div class="split"><div class="keep">95% xưởng giữ lại</div><div class="cut">5%</div></div>
+    <div class="note">Bản dùng thử: bước thanh toán là giả lập, không trừ tiền thật.</div>
+  </div>
+  <div class="ex">
+    <table>
+      <tr><td>Vải tiết kiệm (60 lớp × 28 cm)</td><td>16,8 m</td></tr>
+      <tr><td>Thành tiền (55.000 đ/m)</td><td>923.000 đ</td></tr>
+      <tr><td>Phí 5%</td><td>46.200 đ</td></tr>
+      <tr class="big"><td>Xưởng giữ lại</td><td>876.800 đ</td></tr>
+    </table>
+    <div class="note" style="margin-top:10px">Mỗi 1 đồng phí mang về 20 đồng vải. Cắt 10 chồng như vậy là giữ lại hơn 8,7 triệu đồng.</div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Câu hỏi thường gặp</h2>
+  <details><summary>Cần phần mềm hay máy móc gì không?</summary>
+    <p>Không. Chỉ cần trình duyệt và file sơ đồ .plt (HPGL) xuất từ phần mềm giác sơ đồ đang dùng. File trả về cùng định dạng, dùng ngay trên máy vẽ, máy cắt hiện có.</p></details>
+  <details><summary>Sơ đồ mới có làm sai chi tiết không?</summary>
+    <p>Không sửa hình chi tiết. Chỉ dời và xoay các chi tiết theo góc cho phép, giữ khoảng cách tối thiểu giữa chúng. Nét vẽ, dấu bấm, chữ ghi chú được giữ nguyên từ file gốc. Kết quả được kiểm tra chồng lấn trước khi trả về.</p></details>
+  <details><summary>Nói nhầm hoặc máy nghe sai thì sao?</summary>
+    <p>Trợ lý luôn hiện thẻ tóm tắt yêu cầu. Chỗ nào nó chưa chắc sẽ tô vàng để anh/chị sửa. Chỉ khi bấm Xác nhận mới chạy.</p></details>
+  <details><summary>File của tôi có bị lưu lại không?</summary>
+    <p>File tải lên và kết quả tự xoá sau 1 giờ, không dùng vào việc khác.</p></details>
+  <details><summary>Sao có lúc nút “Dùng thử” bị tắt?</summary>
+    <p>Bản dùng thử chạy trên máy chủ riêng của nhóm, có lúc tạm nghỉ. Trang này tự kiểm tra và bật lại nút khi máy chủ mở.</p></details>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <h2>Thử với sơ đồ của chính xưởng mình</h2>
+  <p class="sub" style="margin:0 auto 22px">Miễn phí xem kết quả. Chỉ trả phí khi tải sơ đồ ngắn hơn về.</p>
+  <div class="cta">
+    <a class="btn off" data-go href="#">Dùng thử ngay →</a>
+    <div class="state" data-state><i></i><span>Đang kiểm tra máy chủ…</span></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  Giác Tiết Kiệm · bản dùng thử. Lõi xếp sơ đồ dựa trên mã nguồn mở sparrow (MIT) và jagua-rs (MPL-2.0) của KU Leuven; trợ lý dùng Qwen3 (Apache-2.0) và PhoWhisper (BSD-3).
+</div></footer>
+
+<script>
+  // status.json is rewritten by scripts/public.ps1 each time the demo machine opens a new tunnel
+  const buttons = document.querySelectorAll('[data-go]'), states = document.querySelectorAll('[data-state]');
+
+  function show(url, text, cls) {
+    buttons.forEach(b => { b.classList.toggle('off', !url); b.href = url || '#'; });
+    states.forEach(s => { s.className = 'state ' + cls; s.querySelector('span').textContent = text; });
+  }
+
+  async function check() {
+    let url = null;
+    try {
+      const s = await (await fetch('status.json?t=' + Date.now(), { cache: 'no-store' })).json();
+      url = s.url;
+      const ctl = new AbortController(); setTimeout(() => ctl.abort(), 8000);
+      const r = await fetch(url + '/api/status', { signal: ctl.signal, cache: 'no-store' });
+      if (!r.ok) throw new Error(r.status);
+      await r.json();
+    } catch (e) { url = null; }
+    if (url) show(url, 'Máy chủ đang mở, dùng thử được ngay', 'on');
+    else { show(null, 'Máy chủ dùng thử đang tạm nghỉ, trang sẽ tự bật lại khi mở', 'off'); setTimeout(check, 30000); }
+  }
+  check();
+</script>
+</body>
+</html>
